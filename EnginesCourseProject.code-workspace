@@ -1,0 +1,865 @@
+{
+	"folders": [
+		{
+			"name": "EnginesCourseProject",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "/home/great/Unreal Engine/UE_5.4.4"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"npm.autoDetect": "off"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "EnginesCourseProject Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Test",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Test",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject Linux Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Test",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Shipping",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Shipping",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject Linux Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject Linux Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"Linux",
+					"Shipping",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject LinuxArm64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject LinuxArm64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject LinuxArm64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Test",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Test",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject LinuxArm64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Test",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Shipping",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Shipping",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProject LinuxArm64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProject LinuxArm64 Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProject",
+					"LinuxArm64",
+					"Shipping",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProjectEditor Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"Debug",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProjectEditor Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"DebugGame",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"EnginesCourseProjectEditor Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			},
+			{
+				"label": "EnginesCourseProjectEditor Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"EnginesCourseProjectEditor",
+					"Linux",
+					"Development",
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch EnginesCourseProject (Debug)",
+				"request": "launch",
+				"program": "/home/great/Documents/GitHub/EnginesCourseProject/Binaries/Linux/UnrealGame-Linux-Debug",
+				"preLaunchTask": "EnginesCourseProject Linux Debug Build",
+				"args": [
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProject (DebugGame)",
+				"request": "launch",
+				"program": "/home/great/Documents/GitHub/EnginesCourseProject/Binaries/Linux/UnrealGame-Linux-DebugGame",
+				"preLaunchTask": "EnginesCourseProject Linux DebugGame Build",
+				"args": [
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProject (Development)",
+				"request": "launch",
+				"program": "/home/great/Documents/GitHub/EnginesCourseProject/Binaries/Linux/UnrealGame",
+				"preLaunchTask": "EnginesCourseProject Linux Development Build",
+				"args": [
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProject (Test)",
+				"request": "launch",
+				"program": "/home/great/Documents/GitHub/EnginesCourseProject/Binaries/Linux/UnrealGame-Linux-Test",
+				"preLaunchTask": "EnginesCourseProject Linux Test Build",
+				"args": [
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProject (Shipping)",
+				"request": "launch",
+				"program": "/home/great/Documents/GitHub/EnginesCourseProject/Binaries/Linux/UnrealGame-Linux-Shipping",
+				"preLaunchTask": "EnginesCourseProject Linux Shipping Build",
+				"args": [
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProjectEditor (Debug)",
+				"request": "launch",
+				"program": "/home/great/Unreal Engine/UE_5.4.4/Engine/Binaries/Linux/UnrealEditor-Linux-Debug",
+				"preLaunchTask": "EnginesCourseProjectEditor Linux Debug Build",
+				"args": [
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject"
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProjectEditor (DebugGame)",
+				"request": "launch",
+				"program": "/home/great/Unreal Engine/UE_5.4.4/Engine/Binaries/Linux/UnrealEditor-Linux-DebugGame",
+				"preLaunchTask": "EnginesCourseProjectEditor Linux DebugGame Build",
+				"args": [
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject"
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch EnginesCourseProjectEditor (Development)",
+				"request": "launch",
+				"program": "/home/great/Unreal Engine/UE_5.4.4/Engine/Binaries/Linux/UnrealEditor",
+				"preLaunchTask": "EnginesCourseProjectEditor Linux Development Build",
+				"args": [
+					"/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject"
+				],
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4",
+				"type": "cppdbg",
+				"visualizerFile": "/home/great/Unreal Engine/UE_5.4.4/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Linux Development Build",
+				"program": "/home/great/Unreal Engine/UE_5.4.4/Engine/Build/BatchFiles/RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=/home/great/Documents/GitHub/EnginesCourseProject/EnginesCourseProject.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"console": "internalConsole",
+				"internalConsoleOptions": "openOnSessionStart",
+				"stopAtEntry": false,
+				"cwd": "/home/great/Unreal Engine/UE_5.4.4"
+			}
+		]
+	}
+}
