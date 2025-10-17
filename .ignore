@@ -1,4 +1,9 @@
 /Content
+/.git
+/DerivedDataCache
 /.vscode
+/.idea
 /Intermediate
 /Saved
+/Plugins/HTNAI/Content
+/Plugins/HTNAI/Intermediate
