@@ -7,7 +7,10 @@
 		{
 			"Name": "EnginesCourseProject",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"HTNAI"
+			]
 		}
 	],
 	"Plugins": [
