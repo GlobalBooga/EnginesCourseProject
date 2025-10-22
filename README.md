@@ -314,3 +314,48 @@ EPlanResult FPlanner::MakePlan(FHTHPlan& OutPlan)
  return EPlanResult::Failed;
 }
 ```
+
+## Project Management
+
+This gantt chart is an accurate representation of the development process.
+
+```mermaid
+gantt
+    title Plan to Achieve All Deliverables
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %e
+    tickInterval 3day
+    weekday monday
+    section Start
+		Team Situation            :a1, 2025-09-11, 2d
+		Ideate                    :a2, 2025-09-11, 1w
+		Make Unreal Project       :a3, after a1, 1d
+		Make Repository           :a4, after a3, 1d
+	section Interactive Media Scenario
+		Write a readme            :2025-10-22, 1d
+		Add screenshots to readme :2025-10-22, 1d
+	section Singleton
+		Implementation            :c1, after a2, 2025-10-10
+		Explanation               :after c1, 2025-10-23
+	section Commands
+		Implementation            :d1, after a2, 2025-10-10
+		Explanation               :after d1, 2025-10-23
+	section Factory
+		Implementation            :e1, after a2, 2025-10-10
+		Explanation               :after e1, 2025-10-23
+	section Observer
+		Implementation            :f1, after a2, 2025-10-10
+		Explanation               :after f1, 2025-10-23
+	section Wrapping Up
+		Project polish            :2025-10-18, 2025-10-23
+		Prepare for Submission    :2025-10-22, 1d
+		Record Video              :2025-10-22, 1d
+		Deadline                  :milestone, m1, 2025-10-22, 1d
+
+```
+
+To help me keep track of my momentum in this project, I used a kanban board in Obsidian. This is a screenshot of the current state (October 22 2025, 3:26 PM)
+
+<img width="1807" height="1114" alt="image" src="https://github.com/user-attachments/assets/63ca29ad-6005-40fd-9b73-ae1ed6693a65" />
+
+
