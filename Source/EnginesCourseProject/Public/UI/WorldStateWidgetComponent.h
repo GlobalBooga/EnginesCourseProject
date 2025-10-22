@@ -20,6 +20,9 @@ class ENGINESCOURSEPROJECT_API UWorldStateWidgetComponent : public UWidgetCompon
 
 	UWorldStateWidgetComponent();
 
+public:
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
 private:
 	
 	virtual void BeginPlay() override;
