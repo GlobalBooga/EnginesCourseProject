@@ -26,6 +26,10 @@ The interactive media scenario presented in this project is a snapshot of my GDW
 As stated above, this project is a snapshot the AI system in my GDW game. It's a technical demo, not a game. 
 This system is for all of the AI in an atmospheric, realtime strategy, tower defense game where you run and defend your town from nightly invasions by commanding your villagers. The AI solution implemented in this project is a hierarchical task network. Characters will be given a list of complex tasks based on their occupation, sorted by priority. They automatically perform tasks based on their world state - which is directly controlled by sensors.
 
+### This Project as a Plugin
+
+This project is an extracted version of what I initially made in my GDW game. Since I will be improving it in a new environment (this project), I am making this whole system a plugin. Now, I can easily re-import the updated version back to my GDW Game. I am only making the core system a plugin because the core doesn't depend on any external assets. 
+
 
 ## Use of Programming Patterns
 
@@ -34,7 +38,6 @@ The scope of the project is a little small because this hierarchical task networ
 This is a simplified, high level diagram of how this system is structured:
 
 <img width="981" height="633" alt="image" src="https://github.com/user-attachments/assets/398770ec-0661-456b-8132-f90ed5cb8f2c" />
-
 
 
 ### Singleton
