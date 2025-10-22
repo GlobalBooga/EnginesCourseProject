@@ -346,9 +346,6 @@ gantt
 	section Factory
 		Implementation            :e1, after a2, 2025-10-10
 		Explanation               :after e1, 2025-10-23
-	section Observer
-		Implementation            :f1, after a2, 2025-10-10
-		Explanation               :after f1, 2025-10-23
 	section Wrapping Up
 		Project polish            :2025-10-18, 2025-10-23
 		Prepare for Submission    :2025-10-22, 1d
@@ -362,3 +359,29 @@ To help me keep track of my momentum in this project, I used a kanban board in O
 <img width="1807" height="1114" alt="image" src="https://github.com/user-attachments/assets/63ca29ad-6005-40fd-9b73-ae1ed6693a65" />
 
 
+### Proof of work
+
+It should be known by this point that most of the code from this project was imported from my GDW project. This section is to prove that the work belongs to me.
+
+My github username is GlobalBooga.
+This is my GDW game github repository: https://github.com/Gold-Band/Apesack-Pickleballs
+
+The history of the code is as follows:
+- My first branch is proto/goap
+  <img width="1392" height="751" alt="image" src="https://github.com/user-attachments/assets/e625bec8-e888-40de-ab3a-a1783cebd3d0" />
+
+- I didn't like the goal oriented action planner route so I converted it to a hierarchical task network. I named this branch proto/htn
+
+  <img width="1401" height="878" alt="image" src="https://github.com/user-attachments/assets/925b26d6-fefd-439d-90a6-9c53b1582bd2" />
+
+- I ran into a roadblock so I decided to reiterate on it. The new branch is called proto/htn-refactor
+
+  <img width="1401" height="769" alt="image" src="https://github.com/user-attachments/assets/379a33a4-70e2-4b0e-9f8f-bdaff25769ce" />
+  
+- When I was satisfied, I cleaned it up in a new branch named feature/htn-source-only. I also made a branch named feature/htn-refactored-demo
+
+  <img width="1423" height="522" alt="image" src="https://github.com/user-attachments/assets/b6e64aa3-d4ee-456a-b05d-2f31a3ef5445" />
+
+- I continued to make changes to this class in proto-npc
+
+<img width="1025" height="893" alt="image" src="https://github.com/user-attachments/assets/c88c07a8-25d4-4cd5-b33b-b310dea495d8" />
