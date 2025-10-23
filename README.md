@@ -28,4 +28,5 @@ This system is for all of the AI in an atmospheric, realtime strategy, tower def
 
 ## Assignment 1:
 Project progression document: [ProjectProgression](ProjectProgression.md)
+
 Video demo: https://youtu.be/u9bc5wZwbhs 
