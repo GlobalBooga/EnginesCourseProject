@@ -1,6 +1,5 @@
-#include "Planner.h"
-#include "Task.h"
-
+#include "HTNAI/Public/Planner.h"
+#include "HTNAI/Public/Task.h"
 bool FHTNPlan::Dequeue(TSubclassOf<UPrimitiveTask>& OutElem)
 {
 	const bool bResult = Plan.TryPopLast(OutElem);
@@ -17,8 +16,9 @@ FPlanner::FPlanner(const TArray<TSoftObjectPtr<UTask>>& InTasks, const FWorldSta
 	TArray<FWorldStateMaker> Buffer;
 	for (const auto& Task: Tasks)
 	{
-		if (!Task.LoadSynchronous()) continue;
-		for (const auto& Method : Task.LoadSynchronous()->Methods)
+		UTask* T = Task.LoadSynchronous();
+		check(T);
+		for (const auto& Method : T->Methods)
 		{
 			for (const auto& Step : Method.Steps)
 			{
@@ -31,7 +31,7 @@ FPlanner::FPlanner(const TArray<TSoftObjectPtr<UTask>>& InTasks, const FWorldSta
 	TasksStates.MergeUnique(FWorldStateContainer::FromArray(Buffer));
 }
 
-bool FPlanner::NewPlan(FHTNPlan& OutPlan) const
+bool FPlanner::NewPlan(FHTNPlan& OutPlan, bool bLogDebug) const
 {
 	FHTNPlan NewPlan;
 	switch(MakePlan(NewPlan))
@@ -39,21 +39,21 @@ bool FPlanner::NewPlan(FHTNPlan& OutPlan) const
 	case Success:
 		if (NewPlan.Priority < OutPlan.Priority)
 		{
-			//UE_LOG(LogTemp, Warning, TEXT("Plan success!"))
+			if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Plan success!"))
 			OutPlan = NewPlan;
 			return true;
 		}
 	case LowerPriority:
-		//UE_LOG(LogTemp, Warning, TEXT("Priority not high enough!"))
+		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Priority not high enough!"))
 		break;
 	case InProgress:
-		//UE_LOG(LogTemp, Warning, TEXT("Plan already in progress!"));
+		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Plan already in progress!"));
 		break;
 	case NoTasks:
-		//UE_LOG(LogTemp, Warning, TEXT("No tasks!"));
+		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("No tasks!"));
 		break;
 	case Failed:
-		//UE_LOG(LogTemp, Warning, TEXT("Plan failed!"));
+		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Plan failed!"));
 		break;
 	default: ;
 	}
@@ -64,22 +64,31 @@ FPlanner::EPlanResult FPlanner::MakePlan(FHTNPlan& OutPlan) const
 {
 	if (Tasks.IsEmpty()) return EPlanResult::NoTasks;
 	
-	// plannign time
 	bool bIsValidTask = false;
 	OutPlan.Priority = -1;
-	for (const auto& Task : Tasks) // highest priority == 0
+	
+	// for each high level task (data asset) available to us...
+	for (auto Task : Tasks) // highest priority == 0
 	{
 		OutPlan.Priority++;
-		if (Task.IsNull()) continue;
-
-		for (const auto& Method : Task.LoadSynchronous()->Methods)
+		
+		// is this even valid?
+		auto T = Task.LoadSynchronous();
+		if (!T)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Planner.cpp(73): Task is null!!"))
+			continue;
+		}
+		
+		// for each method in this high level task...
+		for (const auto& Method : T->Methods) //
 		{
 			bool bIsValidMethod = true;
 
 			FWorldStateContainer Hypothetical = WorldStates? *WorldStates: FWorldStateContainer();
 			if (WorldStates) Hypothetical.MergeUnique(TasksStates);
 
-			for (const auto& Step : Method.Steps)
+			for (auto Step : Method.Steps)
 			{
 				// is valid step?
 				if (!Step)

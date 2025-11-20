@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+//#include "GameplayTagContainer.h"
 #include "TaskResult.h"
 #include "WorldState.h"
 #include "Task.generated.h"
@@ -57,7 +58,7 @@ public:
 	
 	virtual void Tick(float DeltaTime);
 
-	void Initialize(AActor* InstigatorActor, const FTaskCallback& OnCompleteCallback);
+	virtual void Initialize(AActor* InstigatorActor, const FTaskCallback& OnCompleteCallback);
 
 	int GetSubsystemId() const {return SubsystemId;}
 	
@@ -65,6 +66,9 @@ public:
 	bool bPrintStatusInLog = false;
 	
 protected:
+	UFUNCTION(BlueprintCallable)
+	const FTaskResult& GetPreviousTaskResult() const;
+	
 	UFUNCTION(BlueprintImplementableEvent, meta=(DisplayName="Tick"))
 	void ReceiveTick(float DeltaTime);
 
@@ -113,15 +117,21 @@ public:
 	TArray<FMethod> Methods;
 };
 
-UCLASS()
-class UTaskSubsystem: public UGameInstanceSubsystem, public FTickableGameObject
+UCLASS(Blueprintable)
+class HTNAI_API UTaskSubsystem: public UGameInstanceSubsystem, public FTickableGameObject
 {
 	GENERATED_BODY()
 
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
+	
+	UFUNCTION(BlueprintPure)
 	static UTaskSubsystem* Get(const UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintPure)
+	AGameModeBase* GetGameMode(const UObject* WorldContextObject);
+
 	virtual void Tick(float DeltaTime) override;
 	virtual TStatId GetStatId() const override;
 	virtual ETickableTickType GetTickableTickType() const override;

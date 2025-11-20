@@ -18,7 +18,7 @@ public:
 
 // A world state.
 USTRUCT(BlueprintType)
-struct FWorldState
+struct HTNAI_API FWorldState
 {
     GENERATED_BODY()
 
@@ -27,8 +27,6 @@ struct FWorldState
 	
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FName Name;
-
-    bool GetValue() const {return Value;}
 
     bool operator == (const FWorldState& Other) const {
         return Other.Name == Name && Other.Value == Value;
@@ -44,14 +42,12 @@ struct FWorldState
         return *this;
     }
 	
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     bool Value;
-
-    friend class USensor;
 };
 
 USTRUCT(BlueprintType)
-struct FWorldStateMaker
+struct HTNAI_API FWorldStateMaker
 {
     GENERATED_BODY()
 
@@ -65,13 +61,14 @@ struct FWorldStateMaker
 };
 
 USTRUCT(BlueprintType)
-struct FWorldStateContainer
+struct HTNAI_API FWorldStateContainer
 {
     GENERATED_BODY()
     
     int Num() const {return WorldStates.Num();}
     static FWorldStateContainer FromArray(const TArray<FWorldState*>& InArray);
     static FWorldStateContainer FromArray(const TArray<FWorldStateMaker>& InArray);
+    static bool HasAllMatchingCommons(const FWorldStateContainer& A, const FWorldStateContainer& B, bool bLogDebug = false);
     int Add(const FWorldState& Elem) { return WorldStates.Add(Elem); }
     void Remove(const FWorldState& Elem) { WorldStates.Remove(Elem); }  
     void Empty() {WorldStates.Empty();}
@@ -82,25 +79,21 @@ struct FWorldStateContainer
     const TArray<FWorldState>& Get() const {return WorldStates;}
 		
     bool operator == (const FWorldStateContainer& Other) const {
-        for (const auto& Element : WorldStates) // for each req
-        {
-            auto Match = Other.WorldStates.FindByPredicate([&Element](const FWorldState& Elem) { return Elem.Name == Element.Name; });
-            if (Match && Match->Value != Element.Value) return false;
-        }
-        return true;
+        return HasAllMatchingCommons(*this, Other);
     }
 		
     bool operator != (const FWorldStateContainer& Other) const {
         return !(*this == Other);
     }
 
-    FWorldStateContainer& operator ! ()
+    FWorldStateContainer operator ! () const
     {
-        for (auto& Element : WorldStates)
+        FWorldStateContainer Inverted = *this;
+        for (auto& Element : Inverted.WorldStates)
         {
             Element = !Element;
         }
-        return *this;
+        return Inverted;
     }
 		
 private:

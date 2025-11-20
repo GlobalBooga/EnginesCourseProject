@@ -29,9 +29,19 @@ public:
 
 	void CancelActivePlan();
 	void RunTask(const TSoftObjectPtr<UTask> Task);
+	void RunPrimitiveTask(UPrimitiveTask* Task);
 
 	UFUNCTION(BlueprintCallable, Category = "HTN")
-	void OverrideWorldState(const FString& OverrideStateName, bool OverrideValue);
+	void UpdateWorldState(const FString& OverrideStateName, bool OverrideValue);
+	void UpdateWorldState(const FWorldState& UpdatedWorldState);
+
+	bool VerifyWorldState(const FWorldStateContainer& VerifyContainer) const;
+	
+	UFUNCTION(BlueprintPure, Category = "HTN")
+	bool IsWaiting() const;
+	
+protected:
+	virtual void BeginPlay() override;
 	
 private:
 	virtual void InitializeComponent() override;
@@ -39,6 +49,8 @@ private:
 	
 	//** Domain Stuff **//
 	FWorldStateContainer WorldStateContainer;
+
+	// the list of world states that we care about
 	UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess="true"), Category="HTN")
 	TSoftObjectPtr<UDataTable> Domain;
 	
@@ -49,11 +61,13 @@ private:
 	TArray<FSensorInitializer> Sensors;
 	
 	//** Task Stuff **//
+	UPROPERTY(EditAnywhere)
 	TArray<TSoftObjectPtr<UTask>> Tasks;
 	UPROPERTY()
 	TObjectPtr<UPrimitiveTask> CurrentTask;
 
 	bool bGetNextTask = false;
+	bool bIsRunningPriorityTask = false;
 
 	//** Plan Stuff **//
 	FHTNPlan Plan;

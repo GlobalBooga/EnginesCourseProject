@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Task.h"
+#include "HTNAI/Public/Task.h"
+#include "HTNAI/Public/HTNComponent.h"
 
 void UPrimitiveTask::Run()
 {
@@ -48,6 +49,13 @@ void UPrimitiveTask::Initialize(AActor* InstigatorActor, const FTaskCallback& On
 	if (bPrintStatusInLog) UE_LOG(LogTemp, Warning, TEXT("UPrimitiveTask::Initialize -> %s - %s"), *InstigatorActor->GetName(), *Name);
 
 	ReceiveInitialize(InstigatorActor);
+}
+
+const FTaskResult& UPrimitiveTask::GetPreviousTaskResult() const
+{
+	UHTNComponent* Domain = Cast<UHTNComponent>(Instigator->GetComponentByClass(UHTNComponent::StaticClass()));
+	check (Domain);
+	return Domain->GetPreviousTaskResult();
 }
 
 
@@ -114,6 +122,12 @@ UTaskSubsystem* UTaskSubsystem::Get(const UObject* WorldContextObject)
 		}
 	}
 	return nullptr;
+}
+
+AGameModeBase* UTaskSubsystem::GetGameMode(const UObject* WorldContextObject)
+{
+	check(WorldContextObject);
+	return WorldContextObject->GetWorld()->GetAuthGameMode();
 }
 
 void UTaskSubsystem::Tick(float DeltaTime)
