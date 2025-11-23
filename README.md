@@ -27,6 +27,6 @@ As stated above, this project is a snapshot the AI system in my GDW game. It's a
 This system is for all of the AI in an atmospheric, realtime strategy, tower defense game where you run and defend your town from nightly invasions by commanding your villagers. The AI solution implemented in this project is a hierarchical task network. Characters will be given a list of complex tasks based on their occupation, sorted by priority. They automatically perform tasks based on their world state - which is directly controlled by sensors.
 
 ## Assignment 1:
-Project progression document: [ProjectProgression](ProjectProgression.md)
+Project progression document: [CourseProjectPart1](CourseProjectPart1.md)
 
 Video demo: https://youtu.be/u9bc5wZwbhs 
