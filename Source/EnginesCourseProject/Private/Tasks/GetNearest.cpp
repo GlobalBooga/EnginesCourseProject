@@ -16,19 +16,21 @@ void UGetNearest::Tick(float DeltaTime)
 	TArray<AActor*> OutActors;
 	UKismetSystemLibrary::SphereOverlapActors(Instigator->GetWorld(), Instigator->GetActorLocation(), 1000.f,ObjectTypes, AActor::StaticClass(), TArray<AActor*>(),OutActors);
 	
-	FTaskResult Objects{ETaskState::Failed, !EffectContainer, nullptr, FString("GetNearest Failed!")};
+	FTaskResult Objects{ETaskState::Failed};
+	Objects.Effect = !EffectContainer;
+	Objects.Message = FString("GetNearest Failed!");
 
-	float closest = FLT_MAX;
+	float Closest = FLT_MAX;
 	for (const auto& Actor : OutActors)
 	{
 		IGameplayTagAssetInterface* Interface = Cast<IGameplayTagAssetInterface>(Actor);
 		if (Interface && Interface->HasMatchingGameplayTag(ObjectTag))
 		{
 			const float Dist = FVector::DistSquaredXY(Instigator->GetActorLocation(), Actor->GetActorLocation());
-			if ( Dist< closest)
+			if ( Dist< Closest)
 			{
 				Objects.TargetActor = Actor;
-				closest = Dist;
+				Closest = Dist;
 			}
 			Objects.EndState = ETaskState::Success;
 			Objects.Effect = EffectContainer;

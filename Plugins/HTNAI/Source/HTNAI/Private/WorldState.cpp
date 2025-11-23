@@ -67,3 +67,5 @@ void FWorldStateContainer::MergeUnique(const FWorldStateContainer& Other)
 		}
 	}
 }
+
+const FWorldStateContainer FWorldStateContainer::EmptyWorldState = FWorldStateContainer();

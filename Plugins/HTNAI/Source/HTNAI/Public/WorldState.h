@@ -95,6 +95,8 @@ struct HTNAI_API FWorldStateContainer
         }
         return Inverted;
     }
+    
+    static const FWorldStateContainer EmptyWorldState;
 		
 private:
     TArray<FWorldState> WorldStates;

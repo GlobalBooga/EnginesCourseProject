@@ -58,7 +58,7 @@ public:
 	
 	virtual void Tick(float DeltaTime);
 
-	virtual void Initialize(AActor* InstigatorActor, const FTaskCallback& OnCompleteCallback);
+	virtual void Initialize(AActor* InstigatorActor, const FTaskCallback& OnCompleteCallback, const FTaskResult& PreviousTaskResult);
 
 	int GetSubsystemId() const {return SubsystemId;}
 	
@@ -66,14 +66,12 @@ public:
 	bool bPrintStatusInLog = false;
 	
 protected:
-	UFUNCTION(BlueprintCallable)
-	const FTaskResult& GetPreviousTaskResult() const;
 	
 	UFUNCTION(BlueprintImplementableEvent, meta=(DisplayName="Tick"))
 	void ReceiveTick(float DeltaTime);
 
 	UFUNCTION(BlueprintImplementableEvent, meta=(DisplayName="Initialize"))
-	void ReceiveInitialize(AActor* InstigatorActor);
+	void ReceiveInitialize(AActor* InstigatorActor, const FTaskResult& PreviousTaskResult);
 
 	
 	UPROPERTY(BlueprintReadOnly)

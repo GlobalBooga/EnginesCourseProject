@@ -1,5 +1,6 @@
 #include "HTNAI/Public/Planner.h"
 #include "HTNAI/Public/Task.h"
+
 bool FHTNPlan::Dequeue(TSubclassOf<UPrimitiveTask>& OutElem)
 {
 	const bool bResult = Plan.TryPopLast(OutElem);
@@ -31,7 +32,8 @@ FPlanner::FPlanner(const TArray<TSoftObjectPtr<UTask>>& InTasks, const FWorldSta
 	TasksStates.MergeUnique(FWorldStateContainer::FromArray(Buffer));
 }
 
-bool FPlanner::NewPlan(FHTNPlan& OutPlan, bool bLogDebug) const
+
+bool FPlanner::RequestPlan(FHTNPlan& OutPlan, bool bLogDebug) const
 {
 	FHTNPlan NewPlan;
 	switch(MakePlan(NewPlan))
@@ -43,12 +45,6 @@ bool FPlanner::NewPlan(FHTNPlan& OutPlan, bool bLogDebug) const
 			OutPlan = NewPlan;
 			return true;
 		}
-	case LowerPriority:
-		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Priority not high enough!"))
-		break;
-	case InProgress:
-		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Plan already in progress!"));
-		break;
 	case NoTasks:
 		if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("No tasks!"));
 		break;

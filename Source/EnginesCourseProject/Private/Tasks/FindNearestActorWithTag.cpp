@@ -14,7 +14,9 @@ void UFindNearestActorWithTag::Tick(float DeltaTime)
 	TArray<AActor*> OutActors;
 	UKismetSystemLibrary::SphereOverlapActors(Instigator->GetWorld(), Instigator->GetActorLocation(), Radius,ObjectTypes, AActor::StaticClass(), TArray<AActor*>(),OutActors);
 	
-	FTaskResult Objects{ETaskState::Failed, !EffectContainer, nullptr, FString("FindNearestActorWithTag Failed!")};
+	FTaskResult Objects{ETaskState::Failed};
+	Objects.Effect = !EffectContainer;
+	Objects.Message = FString("FindNearestActorWithTag Failed!");
 
 	float Closest = FLT_MAX;
 	for (const auto& Actor : OutActors)

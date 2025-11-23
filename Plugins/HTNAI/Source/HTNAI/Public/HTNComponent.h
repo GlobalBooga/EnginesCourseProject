@@ -21,15 +21,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "HTN")
 	void SetTasks(const TArray<TSoftObjectPtr<UTask>>& NewTasks);
 
-	UFUNCTION(BlueprintPure, Category = "HTN")
-	const FTaskResult& GetPreviousTaskResult() const {return Plan.LastResult;}
-	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
+	
 	void CancelActivePlan();
 	void RunTask(const TSoftObjectPtr<UTask> Task);
-	void RunPrimitiveTask(UPrimitiveTask* Task);
 
 	UFUNCTION(BlueprintCallable, Category = "HTN")
 	void UpdateWorldState(const FString& OverrideStateName, bool OverrideValue);
@@ -65,9 +61,9 @@ private:
 	TArray<TSoftObjectPtr<UTask>> Tasks;
 	UPROPERTY()
 	TObjectPtr<UPrimitiveTask> CurrentTask;
-
 	bool bGetNextTask = false;
 	bool bIsRunningPriorityTask = false;
+	bool bSetTasks = false;
 
 	//** Plan Stuff **//
 	FHTNPlan Plan;

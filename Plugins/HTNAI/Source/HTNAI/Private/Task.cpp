@@ -39,7 +39,7 @@ void UPrimitiveTask::Tick(float DeltaTime)
 	ReceiveTick(DeltaTime);
 }
 
-void UPrimitiveTask::Initialize(AActor* InstigatorActor, const FTaskCallback& OnCompleteCallback)
+void UPrimitiveTask::Initialize(AActor* InstigatorActor, const FTaskCallback& OnCompleteCallback, const FTaskResult& PreviousTaskResult)
 {
 	EffectContainer = FWorldStateContainer::FromArray(Effect);
 	OnTaskCompleteCallback = OnCompleteCallback;
@@ -48,16 +48,8 @@ void UPrimitiveTask::Initialize(AActor* InstigatorActor, const FTaskCallback& On
 
 	if (bPrintStatusInLog) UE_LOG(LogTemp, Warning, TEXT("UPrimitiveTask::Initialize -> %s - %s"), *InstigatorActor->GetName(), *Name);
 
-	ReceiveInitialize(InstigatorActor);
+	ReceiveInitialize(InstigatorActor, PreviousTaskResult);
 }
-
-const FTaskResult& UPrimitiveTask::GetPreviousTaskResult() const
-{
-	UHTNComponent* Domain = Cast<UHTNComponent>(Instigator->GetComponentByClass(UHTNComponent::StaticClass()));
-	check (Domain);
-	return Domain->GetPreviousTaskResult();
-}
-
 
 ETickableTickType UTaskSubsystem::GetTickableTickType() const
 {

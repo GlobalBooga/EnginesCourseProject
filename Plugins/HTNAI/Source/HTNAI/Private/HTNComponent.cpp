@@ -51,7 +51,7 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 		LastPlan-=PlanningInterval;
 		
 		//UE_LOG(LogTemp, Warning, TEXT("Making new plan!"))
-		if (Planner.IsValid() && Planner.Get()->NewPlan(Plan, bLogDebug))
+		if (Planner.IsValid() && Planner.Get()->RequestPlan(Plan, bLogDebug))
 		{
 			bGetNextTask = false;
 			// start new plan
@@ -70,9 +70,6 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 		bGetNextTask = false;
 		switch (Plan.LastResult.EndState)
 		{
-		case ETaskState::InProgress:
-			if (bLogDebug) UE_LOG(LogTemp, Log, TEXT("No previous tasks"))
-			break;
 		case ETaskState::Success:
 			if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Task Success"))
 			// Get Next
@@ -92,7 +89,6 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 			Plan.Reset();
 			bGetNextTask = false;
 			break;
-		default: ;
 		}
 		
 	}
@@ -109,24 +105,11 @@ void UHTNComponent::CancelActivePlan()
 void UHTNComponent::RunTask(const TSoftObjectPtr<UTask> Task)
 {
 	const FPlanner TempPlanner{TArray{Task}, nullptr};
-	TempPlanner.NewPlan(Plan);
+	TempPlanner.RequestPlan(Plan);
 	bGetNextTask = false;
 	CurrentTask = GetNextTaskInitialized(Plan);
 	if (CurrentTask) CurrentTask->Run();
 	if (bLogDebug) UE_LOG(LogTemp, Warning, TEXT("Ordered!"))
-}
-
-void UHTNComponent::RunPrimitiveTask(UPrimitiveTask* Task)
-{
-	auto Callback = [&](const FTaskResult& ReturnedObjects)
-	{
-		bIsRunningPriorityTask = false;
-		//WorldStateContainer.SetToMatch(ReturnedObjects.Effect);
-	};
-	bGetNextTask = false;
-	bIsRunningPriorityTask = true;
-	Task->Initialize(GetOwner(), Callback);
-	Task->Run();
 }
 
 void UHTNComponent::UpdateWorldState(const FString& OverrideStateName, bool OverrideValue)
@@ -212,7 +195,7 @@ TObjectPtr<UPrimitiveTask> UHTNComponent::GetNextTaskInitialized(FHTNPlan& InPla
 			this->WorldStateContainer.SetToMatch(ReturnedObjects.Effect);
 		};
 
-		NextTask->Initialize(GetOwner(), Callback);
+		NextTask->Initialize(GetOwner(), Callback, Plan.LastResult);
 	}
 	return NextTask;
 }

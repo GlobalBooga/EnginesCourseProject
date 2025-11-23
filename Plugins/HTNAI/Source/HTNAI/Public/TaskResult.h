@@ -9,7 +9,6 @@
 UENUM(BlueprintType)
 enum class ETaskState : uint8
 {
-	InProgress,
 	Success,
 	Failed
 };
@@ -18,8 +17,8 @@ USTRUCT(Blueprintable)
 struct FTaskResult
 {
 	GENERATED_BODY()
-	FTaskResult() : EndState(ETaskState::InProgress), Effect(FWorldStateContainer()), TargetActor(nullptr), PointOfInterest(FVector::Zero()),Message("") { }
-	explicit FTaskResult(ETaskState State, const FWorldStateContainer& EffectResult, TObjectPtr<AActor> Target, const FString& ResultMessage): EndState(State), Effect(EffectResult), TargetActor(Target), Message(ResultMessage) {}
+	FTaskResult() : EndState(ETaskState::Success), Effect(FWorldStateContainer::EmptyWorldState), TargetActor(nullptr), PointOfInterest(FVector::Zero()), Message(FString()) { }
+	explicit FTaskResult(ETaskState State): EndState(State), Effect(FWorldStateContainer::EmptyWorldState), TargetActor(nullptr), PointOfInterest(FVector::Zero()), Message(FString()) {}
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ETaskState EndState;
