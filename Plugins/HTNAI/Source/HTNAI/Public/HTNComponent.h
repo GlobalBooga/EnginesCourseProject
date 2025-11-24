@@ -62,7 +62,6 @@ private:
 	UPROPERTY()
 	TObjectPtr<UPrimitiveTask> CurrentTask;
 	bool bGetNextTask = false;
-	bool bIsRunningPriorityTask = false;
 	bool bSetTasks = false;
 
 	//** Plan Stuff **//

@@ -46,7 +46,7 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 		}
 	}
 
-	if (!bIsRunningPriorityTask && (LastPlan+=DeltaTime) >= PlanningInterval)
+	if ((LastPlan+=DeltaTime) >= PlanningInterval)
 	{
 		LastPlan-=PlanningInterval;
 		
