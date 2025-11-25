@@ -1,4 +1,4 @@
-# Assignment 1 - Project Progression
+# Course Project Part 1
 
 ### This Project as a Plugin
 
