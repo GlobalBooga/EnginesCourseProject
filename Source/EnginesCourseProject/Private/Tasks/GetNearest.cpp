@@ -27,7 +27,7 @@ void UGetNearest::Tick(float DeltaTime)
 		if (Interface && Interface->HasMatchingGameplayTag(ObjectTag))
 		{
 			const float Dist = FVector::DistSquaredXY(Instigator->GetActorLocation(), Actor->GetActorLocation());
-			if ( Dist< Closest)
+			if (Dist < Closest)
 			{
 				Objects.TargetActor = Actor;
 				Closest = Dist;
