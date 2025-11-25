@@ -9,7 +9,7 @@ Since the last assignment, small changes were made to the preexisting code base 
 <img width="1482" height="767" alt="changing-task cpp" src="https://github.com/user-attachments/assets/06453ab4-3f30-420f-99a6-ddabc7cc87bc" />
 
 
-This is a neat and much needed change because nearly every task that does something to its owner actor depends on the output of a previous task. So now, there's no more need to repeat this code.
+This is a neat and much needed change because nearly every task that does something to its owner actor depends on the output of a previous task. So now, there's no more need to repeat this code:
 
 
 <img width="1051" height="303" alt="old-init-bp" src="https://github.com/user-attachments/assets/afe96115-abcf-4d14-a987-88b28f17c70e" />
