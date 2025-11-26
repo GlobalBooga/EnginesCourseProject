@@ -25,9 +25,11 @@ And primitive tasks can just access the last result if needed (by default).
 <img width="826" height="348" alt="new-init-bp" src="https://github.com/user-attachments/assets/421253c2-fe09-4503-ad68-da72cedae8b8" />
 
 
-In theory, this change helps reduce the amount of function calls each frame. (show proof? maybe it actually optimizes the game...) So far, what was done is really to clean up the project for readability.
+This change helps reduce the amount of data that needs to be passed around each time which even gives a little extra boost to performance (more on that in the optimization section). So far, what was done is really to clean up the project for readability.
+
 
 ## Use of Programming Patterns
+
 
 ### Dirty Flag
 
@@ -133,5 +135,26 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 ```
 
 The game that this is designed for benefits from this design pattern because it makes the AI modular. The game's gameplay heavily relies on non playable character, and going the HTN route allows me as the developer to easily make scripted sets of actions and assign them to the AI as available actions. The AI can then dynamically chose the best option depending on its current context in the game.
+
+
+## Optimization
+
+The small code change that I made to the factory does in fact bring some extra performance. It's small but it exists.
+
+On the left, is a screenshot of the profiler **before** the change, and on the right is **after**. 
+
+
+<img width="2556" height="1279" alt="optimization-before-after" src="https://github.com/user-attachments/assets/7e3e32ec-8d3f-49ce-967a-337cc545a7f3" />
+
+
+What's happening in this scenario:
+1. Spawn 100 NPCs 
+2. Let them do their thing for a few seconds
+3. End play
+
+In the timing insights graph, the red region is the time when the NPCs exist (the first snapshot was longer than the second). Looking closely, you can see that the timing on the right (post-change) is ever so slightly better than the one on the left (pre-change).
+
+In the frame diagram underneath, I've zoomed into one of the frames where the planning happens (HTN). Investigating the timing values on each HTN call, the change I made to task initialization improves initialization time by about 100us. 
+
 
 
