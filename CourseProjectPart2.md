@@ -154,7 +154,7 @@ What's happening in this scenario:
 
 In the timing insights graph, the red region is the time when the NPCs exist (the first snapshot was longer than the second). Looking closely, you can see that the timing on the right (post-change) is ever so slightly better than the one on the left (pre-change).
 
-In the frame diagram underneath, I've zoomed into one of the frames where the planning happens (HTN). Investigating the timing values on each HTN call, the change I made to task initialization improves performance by about 100us. 
+In the frame diagram underneath, I've zoomed into one of the frames where the planning happens (HTN). Investigating the timing values on each HTN call, the change I made to task initialization improves computation speeds by about 100us. 
 
 
 
