@@ -175,7 +175,7 @@ The game that this is designed for benefits from this design pattern because it 
 
 ## Optimization
 
-I optimized the sensor component of my NPCs. This flowchart illustrates my process:
+I optimized the item sensing component of my NPCs. This flowchart illustrates my process:
 
 
 <img width="419" height="821" alt="how i optimized" src="https://github.com/user-attachments/assets/56b2dc86-7b13-4917-8ed5-17b5e9428ec7" />
