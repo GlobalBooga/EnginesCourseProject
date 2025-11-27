@@ -29,6 +29,16 @@ void UHTNComponent::SetTasks(const TArray<TSoftObjectPtr<UTask>>& NewTasks)
 void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	
+	if(!bTickReady)
+	{
+		if (++InitialTickCount > InitialFrameDelay)
+		{
+			bTickReady = true;
+		}
+		return;
+	}
+	
 
 	
 	if (PreTickEvent)
@@ -141,6 +151,8 @@ void UHTNComponent::BeginPlay()
 	{
 		SetTasks(Tasks);
 	}
+	
+	InitialFrameDelay = FMath::RandRange(0, 10);
 }
 
 

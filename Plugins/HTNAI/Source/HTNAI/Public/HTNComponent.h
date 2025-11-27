@@ -40,6 +40,11 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
+	int InitialTickCount = 0;
+	int InitialFrameDelay = 0;
+	bool bTickReady = false;
+	
+	
 	virtual void InitializeComponent() override;
 	TObjectPtr<UPrimitiveTask> GetNextTaskInitialized(FHTNPlan& InPlan);
 	
