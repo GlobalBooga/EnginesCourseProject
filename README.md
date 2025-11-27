@@ -39,4 +39,4 @@ Video demo: https://youtu.be/u9bc5wZwbhs
 ## Assignment 2:
 Course project part 2 document: [CourseProjectPart2](CourseProjectPart2.md)
 
-Video demo: https://youtu.be/zTn0SF9ASxs 
+Video demo: https://youtu.be/zTn0SF9ASxs
