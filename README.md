@@ -10,7 +10,10 @@ Alex Anastasakis - 100892202 (contribution 100%)
  - Factory
  - Obsersver
  - Command
- - Video report
+ - Dirty Flag
+ - State
+ - Optimizations
+ - Video reports
  - Github management
  - Project management
  - Submission
