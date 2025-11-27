@@ -1,7 +1,7 @@
 # Course Project Part 2
 
 ### Improvements from assignment 1
-Since the last assignment, small changes were made to the preexisting code base - mostly micro adjustments to work with other parts of the game this project belongs in. Some functions were renamed or deleted, and parameters moved or renamed. These small changes were made after re-importing the plugin from my GDW game. The next few commits were for tweaking some of the code to work with this project. This is still my work.
+Since the last assignment, small changes were made to the preexisting code base - mostly micro adjustments to work with other parts of the game this project belongs in. Some functions were renamed or deleted, and parameters moved or renamed. These small changes were made after re-importing the plugin from my GDW game ("updated the plugin" commit). The next few commits were for tweaking some of the code to work with this project. This is all 100% my work.
 
 <img width="1676" height="902" alt="imported-from-gdw" src="https://github.com/user-attachments/assets/a4ae745d-0068-4965-afa3-ca14cdb3f8e8" />
 
