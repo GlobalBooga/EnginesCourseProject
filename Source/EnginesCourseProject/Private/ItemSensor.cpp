@@ -20,25 +20,6 @@ void UItemSensor::Tick()
 		ReceiveOnSensed();
 	}
 	
-	/*
-	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-	ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));
-	TArray<AActor*> OutActors;
-
-	if (UKismetSystemLibrary::SphereOverlapActors(Owner->GetWorld(), Owner->GetOwner()->GetActorLocation(), SenseRadius,ObjectTypes, AItemActor::StaticClass(), TArray<AActor*>(),OutActors))
-	{
-		for (const auto& Actor : OutActors)
-		{
-			if (Cast<AItemActor>(Actor)->HasMatchingGameplayTag(ObjectTag))
-			{
-				WorldState.Value = true;
-				ReceiveOnSensed();
-			}
-		}
-	}
-	*/
-	
-	//UE_LOG(LogTemp, Warning, TEXT("UItemSensor::Tick"));
 	Owner->UpdateWorldState(WorldState);
 }
 
