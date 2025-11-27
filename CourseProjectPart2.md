@@ -28,7 +28,6 @@ And primitive tasks can just access the last result if needed (by default).
 Again, this is just for ease of use of the code to help with faster prototyping. Another notable change was done in an attempt to optimize the code. When spawning a lot of NPCs, performance drops (for reasons shown later in the Optimization section). One reason is that every npc is trying to do its thing during the same frames. My attempt to solve this was to add an initial random frame delay to spread out the computation of every NPC's plans over the span of a dozen frames. Unfortunately, this doesn't seem to have made much of a difference and it proved difficult to prove the performace gain. Therefore, it is included in this section as an honourable mention. The code for this change works like this:
 
 ```
-// the first thing in the tick function
 void BeginPlay()
 {
 	// random number
@@ -37,6 +36,7 @@ void BeginPlay()
 
 void Tick()
 {
+	// the first thing in the tick function
 	if(!bTickReady)
 	{
 		if (++InitialTickCount > InitialFrameDelay)
