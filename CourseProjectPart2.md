@@ -25,7 +25,29 @@ And primitive tasks can just access the last result if needed (by default).
 <img width="826" height="348" alt="new-init-bp" src="https://github.com/user-attachments/assets/421253c2-fe09-4503-ad68-da72cedae8b8" />
 
 
-This change helps reduce the amount of data that needs to be passed around each time which even gives a little extra boost to performance (more on that in the optimization section). So far, what was done is really to clean up the project for readability.
+Again, this is just for ease of use of the code to help with faster prototyping. Another notable change was done in an attempt to optimize the code. When spawning a lot of NPCs, performance drops (for reasons shown later in the Optimization section). One reason is that every npc is trying to do its thing during the same frames. My attempt to solve this was to add an initial random frame delay to spread out the computation of every NPC's plans over the span of a dozen frames. Unfortunately, this doesn't seem to have made much of a difference. The code for this change works like this:
+
+```
+// the first thing in the tick function
+void BeginPlay()
+{
+	// random number
+	InitialFrameDelay = RandomRange(0,10);
+}
+
+void Tick()
+{
+	if(!bTickReady)
+	{
+		if (++InitialTickCount > InitialFrameDelay)
+		{
+			bTickReady = true;
+		}
+		else return;
+	}
+	// tick code...
+}
+```
 
 
 ## Use of Programming Patterns
@@ -142,22 +164,36 @@ The game that this is designed for benefits from this design pattern because it 
 
 ## Optimization
 
-The small code change that I made to the factory does in fact bring some extra performance. It's small but it exists.
-
-On the left, is a screenshot of the profiler **before** the change, and on the right is **after**. 
+I optimized the sensor component of my NPCs. This flowchart illustrates my process:
 
 
-<img width="2556" height="1279" alt="optimization-before-after" src="https://github.com/user-attachments/assets/7e3e32ec-8d3f-49ce-967a-337cc545a7f3" />
+<img width="419" height="821" alt="how i optimized" src="https://github.com/user-attachments/assets/56b2dc86-7b13-4917-8ed5-17b5e9428ec7" />
 
 
-What's happening in this scenario:
-1. Spawn 100 NPCs 
-2. Let them do their thing for a few seconds
-3. End play
+Using an Unreal Engine macro (TRACE_CPUPROFILER_EVENT_SCOPE_STR), I was able to time my own code into the profiler which was super cool. I wanted to monitor things that happened during the HTN tick function and found that sensing takes a long time to do. The following screenshot shows the difference from before and after the optimization was made.
 
-In the timing insights graph, the red region is the time when the NPCs exist (the first snapshot was longer than the second). Looking closely, you can see that the timing on the right (post-change) is ever so slightly better than the one on the left (pre-change).
+<img width="2559" height="1396" alt="Sidebyside-before-after" src="https://github.com/user-attachments/assets/a29e653e-9d1b-4025-8373-ff6f58adadd6" />
 
-In the frame diagram underneath, I've zoomed into one of the frames where the planning happens (HTN). Investigating the timing values on each HTN call, the change I made to task initialization improves speeds by about 100us. 
+This next screenshot zooms into the frame graph. Notice how in the right snapshot, the ItemSensor event now takes a fraction of the time compared to the old version. This is the optimization I implemented.
 
+<img width="2559" height="1382" alt="zooming in on the item sensor before after" src="https://github.com/user-attachments/assets/8c1ac6d4-a6cc-420f-871b-26de2bf82bd8" />
 
+This was acheived using a singleton. For context, the original code used a sphere cast to find nearby actors. I added a new game instance subsystem class to act as a manager that caches a reference to all items in the level. When an item spawns, it adds itself to this list, and removes itself when picked up. Then, I made a simple getter function that returns the nearest item:
 
+```
+AActor* FindNearest(FVector FromLocation)
+{
+	// sort objects array 
+	Items.Sort([FromLocation](const AActor& A, const AActor& B)
+	{
+		const float FastDistA = FVector::DistSquared(FromLocation, A.GetActorLocation());
+		const float FastDistB = FVector::DistSquared(FromLocation, B.GetActorLocation());
+		return (FastDistA > FastDistB);
+	});
+
+	// return the closest
+	return Items[0];
+}
+```
+
+When an NPC wants to know if there are any nearby items, it can now do so 20 times faster than before.
