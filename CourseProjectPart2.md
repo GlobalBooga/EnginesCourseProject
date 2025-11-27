@@ -178,7 +178,7 @@ This next screenshot zooms into the frame graph. Notice how in the right snapsho
 
 <img width="2559" height="1382" alt="zooming in on the item sensor before after" src="https://github.com/user-attachments/assets/8c1ac6d4-a6cc-420f-871b-26de2bf82bd8" />
 
-This was acheived using a singleton. For context, the original code used a sphere cast to find nearby actors. I added a new game instance subsystem class to act as a manager that caches a reference to all items in the level. When an item spawns, it adds itself to this list, and removes itself when picked up. Then, I made a simple getter function that returns the nearest item:
+This was acheived using a singleton (for context, the original code used a sphere cast to find nearby actors). I added a new game instance subsystem class to act as a manager that caches a reference to all items in the level. When an item spawns, it adds itself to this list, and removes itself when picked up. Then, I made a simple getter function that returns the nearest item:
 
 ```
 AActor* FindNearest(FVector FromLocation)
