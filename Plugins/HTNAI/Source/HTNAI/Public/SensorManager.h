@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "SensorManager.generated.h"
 
 UCLASS(Blueprintable)
@@ -14,7 +15,7 @@ public:
 	UFUNCTION(BlueprintPure)
 	static USensorManager* Get(const UObject* WorldContextObject);
 
-	AActor* FindNearestOfType(UClass* Type, FVector FromLocation);
+	AActor* FindNearestWithTag(FGameplayTag Tag, FVector FromLocation);
 	
 	void AddObject(AActor* Object);
 	void RemoveObject(AActor* Object);

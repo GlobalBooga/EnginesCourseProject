@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "SensorManager.h"
 
+#include "GameplayTagAssetInterface.h"
+
 USensorManager* USensorManager::Get(const UObject* WorldContextObject)
 {
 	if (GEngine)
@@ -15,19 +17,31 @@ USensorManager* USensorManager::Get(const UObject* WorldContextObject)
 	return nullptr;
 }
 
-AActor* USensorManager::FindNearestOfType(UClass* Type, FVector FromLocation)
+AActor* USensorManager::FindNearestWithTag(FGameplayTag Tag, FVector FromLocation)
 {
 	if (Objects.IsEmpty()) return nullptr;
 	
 	// sort objects array 
-	Objects.Sort([FromLocation](const AActor& A, const AActor& B)
+	if (Objects.Num() > 1)
 	{
-		const float FastDistA = FVector::DistSquared(FromLocation, A.GetActorLocation());
-		const float FastDistB = FVector::DistSquared(FromLocation, B.GetActorLocation());
-		return FastDistA > FastDistB;
-	});
+		Objects.Sort([FromLocation](const AActor& A, const AActor& B)
+		{
+			const float FastDistA = FVector::DistSquared(FromLocation, A.GetActorLocation());
+			const float FastDistB = FVector::DistSquared(FromLocation, B.GetActorLocation());
+			return (FastDistA > FastDistB);
+		});
+	}
 	
-	return Objects[0];
+	for (AActor* Object : Objects)
+	{
+		const auto Interface = Cast<IGameplayTagAssetInterface>(Object);
+		if (Interface->HasMatchingGameplayTag(Tag))
+		{
+			return Object;
+		}
+	}
+
+	return nullptr;
 }
 
 void USensorManager::AddObject(AActor* Object)

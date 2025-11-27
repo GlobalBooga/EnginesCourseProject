@@ -13,7 +13,7 @@ void UItemSensor::Tick()
 
 	WorldState.Value = false;
 
-	const auto Result = SensorManager->FindNearestOfType(AItemActor::StaticClass(), Owner->GetOwner()->GetActorLocation());
+	const auto Result = SensorManager->FindNearestWithTag(ObjectTag, Owner->GetOwner()->GetActorLocation());
 	if (Result)
 	{
 		WorldState.Value = true;
