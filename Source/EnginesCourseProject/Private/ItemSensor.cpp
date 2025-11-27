@@ -10,7 +10,7 @@
 void UItemSensor::Tick()
 {
 	Super::Tick();
-
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("ItemSensor")
 	WorldState.Value = false;
 
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;

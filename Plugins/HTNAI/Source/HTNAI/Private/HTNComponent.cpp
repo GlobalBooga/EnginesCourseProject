@@ -29,16 +29,17 @@ void UHTNComponent::SetTasks(const TArray<TSoftObjectPtr<UTask>>& NewTasks)
 void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
 	
 	if (PreTickEvent)
 	{
+		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HTN::PreTickEvent")
 		PreTickEvent();
 		PreTickEvent = nullptr;
 	}
 
 	for (auto Sensor : SensorInstances)
 	{
+		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HTN::CheckSensor")
 		check(Sensor);
 		if (Sensor->ShouldTick())
 		{
@@ -49,6 +50,7 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 	if (!bIsRunningPriorityTask && (LastPlan+=DeltaTime) >= PlanningInterval)
 	{
 		LastPlan-=PlanningInterval;
+		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HTN::TickPlan")
 		
 		//UE_LOG(LogTemp, Warning, TEXT("Making new plan!"))
 		if (Planner.IsValid() && Planner.Get()->NewPlan(Plan, bLogDebug))
@@ -67,6 +69,7 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 
 	if (bGetNextTask)
 	{
+		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HTN::GetNextTask")
 		bGetNextTask = false;
 		switch (Plan.LastResult.EndState)
 		{
