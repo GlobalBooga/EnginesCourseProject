@@ -74,6 +74,7 @@ void UTaskSubsystem::Tick(float DeltaTime)
 Using dirty flags in these sections is beneficial because it helps to keep the code simple, readable, and it allows me to use the tick functionality to accurately time events.
 
 
+
 ### State
 
 *Types mentioned in this seciton: UPrimitiveTask , UTask, UHTNComponent, FWorldState*
@@ -135,6 +136,8 @@ void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FAc
 ```
 
 The game that this is designed for benefits from this design pattern because it makes the AI modular. The game's gameplay heavily relies on non playable character, and going the HTN route allows me as the developer to easily make scripted sets of actions and assign them to the AI as available actions. The AI can then dynamically chose the best option depending on its current context in the game.
+
+
 
 
 ## Optimization
