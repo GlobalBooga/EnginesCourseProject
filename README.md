@@ -29,6 +29,8 @@ The interactive media scenario presented in this project is a snapshot of my GDW
 As stated above, this project is a snapshot the AI system in my GDW game. It's a technical demo, not a game. 
 This system is for all of the AI in an atmospheric, realtime strategy, tower defense game where you run and defend your town from nightly invasions by commanding your villagers. The AI solution implemented in this project is a hierarchical task network. Characters will be given a list of complex tasks based on their occupation, sorted by priority. They automatically perform tasks based on their world state - which is directly controlled by sensors.
 
+*note that the main branch is the old version while observer-state has the optimizations*
+
 ## Assignment 1:
 Project progression document: [CourseProjectPart1](CourseProjectPart1.md)
 
