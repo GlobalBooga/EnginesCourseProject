@@ -37,6 +37,6 @@ Project progression documentation: [CourseProjectPart1](CourseProjectPart1.md)
 Video demo: https://youtu.be/u9bc5wZwbhs 
 
 ## Part 2 (Final):
-Course project part 2 documentation: [CourseProjectPart2](CourseProjectPart2.md)
+Final course project documentation: [CourseProjectPart2](CourseProjectPart2.md)
 
 Video demo: https://youtu.be/zTn0SF9ASxs
