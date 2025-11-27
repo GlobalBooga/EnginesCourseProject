@@ -31,12 +31,12 @@ This system is for all of the AI in an atmospheric, realtime strategy, tower def
 
 *note that the main branch is the old version while observer-state has the optimizations*
 
-## Assignment 1:
-Project progression document: [CourseProjectPart1](CourseProjectPart1.md)
+## Assignment 1 (Progression):
+Project progression documentation: [CourseProjectPart1](CourseProjectPart1.md)
 
 Video demo: https://youtu.be/u9bc5wZwbhs 
 
-## Assignment 2:
-Course project part 2 document: [CourseProjectPart2](CourseProjectPart2.md)
+## Assignment 2 (Final):
+Course project part 2 documentation: [CourseProjectPart2](CourseProjectPart2.md)
 
 Video demo: https://youtu.be/zTn0SF9ASxs
