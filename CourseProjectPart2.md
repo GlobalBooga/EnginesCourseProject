@@ -61,8 +61,19 @@ The dirty flag is used to trigger events in the tick function. It's essentially 
 // HTNComponent.cpp
 void UHTNComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)  
 {
+	if(!bTickReady) // dirty flag
+	{
+		if (++InitialTickCount > InitialFrameDelay) // dirty flag
+		{
+			bTickReady = true;
+		}
+		else return;
+	}
+
+	//
 	// tick stuff
-	
+	//
+
 	TimeSinceLastPlan += DeltaTime;
 
 	if (TimeSinceLastPlan >= PlanningInterval) // dirty flag
