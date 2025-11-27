@@ -58,6 +58,7 @@ bool FPlanner::RequestPlan(FHTNPlan& OutPlan, bool bLogDebug) const
 
 FPlanner::EPlanResult FPlanner::MakePlan(FHTNPlan& OutPlan) const
 {
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("Planner::MakePlan")
 	if (Tasks.IsEmpty()) return EPlanResult::NoTasks;
 	
 	bool bIsValidTask = false;

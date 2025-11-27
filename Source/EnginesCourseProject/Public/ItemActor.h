@@ -27,6 +27,7 @@ public:
 protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnPickedUp(AActor* ActorPickingUp);
+	void BeginPlay() override;
 	
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(AllowPrivateAccess="true"))

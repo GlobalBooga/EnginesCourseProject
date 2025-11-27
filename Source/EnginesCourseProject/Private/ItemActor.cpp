@@ -2,6 +2,7 @@
 
 #include "ItemActor.h"
 #include "PaperSpriteComponent.h"
+#include "SensorManager.h"
 #include "Components/BoxComponent.h"
 
 // Sets default values
@@ -34,5 +35,13 @@ void AItemActor::GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const
 
 void AItemActor::PickedUp(AActor* ActorPickingUp)
 {
+	USensorManager::Get(this)->RemoveObject(this);
 	OnPickedUp(ActorPickingUp);
+}
+
+void AItemActor::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	USensorManager::Get(this)->AddObject(this);
 }

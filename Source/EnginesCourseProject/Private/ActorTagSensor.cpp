@@ -7,7 +7,7 @@
 void UActorTagSensor::Tick()
 {
 	Super::Tick();
-	
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("ActorTagSensor")
 	WorldState.Value = false;
 
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;

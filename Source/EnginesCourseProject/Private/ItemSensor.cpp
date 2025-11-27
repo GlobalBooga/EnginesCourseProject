@@ -2,17 +2,25 @@
 
 
 #include "ItemSensor.h"
-
 #include "HTNComponent.h"
 #include "ItemActor.h"
-#include "Kismet/KismetSystemLibrary.h"
+#include "SensorManager.h"
 
 void UItemSensor::Tick()
 {
 	Super::Tick();
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("ItemSensor")
 
 	WorldState.Value = false;
 
+	const auto Result = SensorManager->FindNearestOfType(AItemActor::StaticClass(), Owner->GetOwner()->GetActorLocation());
+	if (Result)
+	{
+		WorldState.Value = true;
+		ReceiveOnSensed();
+	}
+	
+	/*
 	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
 	ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));
 	TArray<AActor*> OutActors;
@@ -28,6 +36,8 @@ void UItemSensor::Tick()
 			}
 		}
 	}
+	*/
+	
 	//UE_LOG(LogTemp, Warning, TEXT("UItemSensor::Tick"));
 	Owner->UpdateWorldState(WorldState);
 }
